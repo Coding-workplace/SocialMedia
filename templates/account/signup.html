@@ -3,7 +3,8 @@
  SocialAdda -signup
 {% endblock title %}
 {% block body %}
-<div class="container">
+<div class="container my-4">
+<h2>Sign up</h2>
 <form method="POST">
 	{% csrf_token %}
 	<div class="mb-3">
@@ -25,5 +26,37 @@
   </div>
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
+{% block login_model %}
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Login</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <!--login model_body-->
+		<form method="POST" action="login/">
+		{% csrf_token %}
+  <div class="mb-3">
+    <label for="username" class="form-label">Username</label>
+    <input type="text" class="form-control" id="username" name="username" >
+  </div>
+  <div class="mb-3">
+    <label for="password" class="form-label">Password</label>
+    <input type="password" class="form-control" id="password" name="password">
+  </div>
+  <div class="mb-3 form-check">
+    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+    <label class="form-check-label" for="exampleCheck1">Check me out</label>
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>		
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock login_model %}
 </div>
 {% endblock body %}
