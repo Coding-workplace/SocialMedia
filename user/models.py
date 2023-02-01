@@ -9,3 +9,11 @@ class Post(models.Model):
 	def __str__(self):
 		
 		 return '%s %s' % (self.user, self.caption[:20])
+class Profile(models.Model):
+	user=models.ForeignKey(User,on_delete=models.CASCADE)
+	bio=models.CharField(max_length=50)
+	followers=models.IntegerField(default=0)
+	following=models.IntegerField(default=0)
+	image=models.ImageField()
+	def __str__(self):
+		 return str(self.user)

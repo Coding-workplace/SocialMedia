@@ -2,6 +2,9 @@
 {% block title %}
  SocialAdda 
 {% endblock title %}
+{% block css %}
+
+{% endblock css %}
 {% block body %}
 	<!-- Modal -->
 <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -35,9 +38,9 @@
 
 	{% for i in posts  %}
 	<div class="container">
-		<div class="card my-4">
+		<div class="card my-4" >
 		  <div class="card-header">
-				{{i.user}}	Posted on {{i.date}}
+				<a href="{{i.user}}" style="text-decoration:none;"><strong>{{i.user}}</strong></a>	Posted on {{i.date}}
 		  </div>
 		  <div class="card-body">
 			<img src={{i.image.url}} class="img-fluid"/>
@@ -47,7 +50,7 @@
 				<a href="#" class="btn btn-secondary">Share</a>
 				<a href="#" class="btn btn-warning">Comment</a>
 				{% if  request.user == i.user %}
-				<a href="#" class="btn btn-danger">Delete</a>
+				<a href="{{i.id}}" class="btn btn-danger">Delete</a>
 				{% endif %}
 			</div>
 		  </div>

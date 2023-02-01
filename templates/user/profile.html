@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block title %}
+ SocialAdda 
+{% endblock title %}
+{% block css %}
+
+{% endblock css %}
+{% block body %}
+
+<div class="container my-4">
+<div class="card" style="width: 18rem;">
+  <img src="{{profile.image.url}}" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">{{profile.user}}</h5>
+    <p class="card-text"> {{profile.bio}}</p>
+    <p class="card-text"> Followers: {{profile.followers}}</p>
+    <p class="card-text"> Following: {{profile.following}}</p>
+  </div>
+</div>
+</div>
+{% endblock body %}

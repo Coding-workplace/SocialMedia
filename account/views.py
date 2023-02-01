@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login,logout
 from django.contrib import messages
+from user.models import Profile
 # Create your views here.
 def signup_view(request):
 	'''Signup Page'''
@@ -11,12 +12,17 @@ def signup_view(request):
 		email=request.POST.get('email')
 		password=request.POST.get('password')
 		cPassword=request.POST.get('confirmPassword')
-		if password == cPassword and password != "":
-			user=User.objects.create_user(username=username,email=email,password=password)
-			user.save()
-			messages.success(request,"User created")
+		checkUser=Profile.objects.filter(username=username)
+		if checkUser:
+			messages.error(request,"User with this username already exists!")
+			return redirect("/")
 		else:
-			messages.error(request,"Password and Confirm Password doesn't match or empty")
+			if password == cPassword and password != "":
+				user=User.objects.create_user(username=username,email=email,password=password)
+				user.save()
+				messages.success(request,"User created")
+			else:
+				messages.error(request,"Password and Confirm Password doesn't match or empty")
 	return render(request,"account/signup.html")
 def login_view(request):
 	'''login'''
