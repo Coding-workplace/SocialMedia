@@ -29,29 +29,29 @@
 </form>
 		
 </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
     </div>
   </div>
 </div>
 
+	{% for i in posts  %}
 	<div class="container">
 		<div class="card my-4">
 		  <div class="card-header">
-			Darshil
+				{{i.user}}	Posted on {{i.date}}
 		  </div>
 		  <div class="card-body">
-			<h5 class="card-title">Images</h5>
-			<p class="card-text">caption</p>
+			<img src={{i.image.url}} class="img-fluid"/>
+			<p class="card-text">{{i.caption}}</p>
 			<div class="col">
 				<a href="#" class="btn btn-primary">Like</a>
 				<a href="#" class="btn btn-secondary">Share</a>
 				<a href="#" class="btn btn-warning">Comment</a>
+				{% if  request.user == i.user %}
+				<a href="#" class="btn btn-danger">Delete</a>
+				{% endif %}
 			</div>
 		  </div>
 		</div>
 	</div>
-	
+	{% endfor %}
 {% endblock body %}

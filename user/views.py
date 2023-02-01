@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
 from django.contrib import messages
-from account.models import Post
+from .models import Post
 # Create your views here.
 def home(request):
 	if request.method=="POST":
@@ -10,4 +10,8 @@ def home(request):
 		user=Post(caption=caption,image=image,user=user)
 		user.save()
 		messages.success(request,"Uploaded Successfully")
-	return render(request,'user/feed.html')
+	allPost=Post.objects.all()
+	data={
+		'posts':allPost
+	}
+	return render(request,'user/feed.html',data)
